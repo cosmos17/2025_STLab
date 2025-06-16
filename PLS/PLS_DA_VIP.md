@@ -26,13 +26,13 @@
 
 ## 목차
 
-1. [PLS 이해와 알고리즘]
+1. [PLS 알고리즘](#pls-알고리즘)
 
-2. PLS <-> PCA 차이
+2. [PCA와 비교](#pca와-비교)
 
-2. [부분 최소 제곱-판별 분석 PLS-DA](#부분-최소-제곱-판별-분석-partial-least-squares-discriminant-analysis)
+3. [부분 최소 제곱-판별 분석 PLS-DA](#부분-최소-제곱-판별-분석-partial-least-squares-discriminant-analysis)
 
-3. [부분 최소 제곱- PLS-VIP](#부분-최소-제곱---partial-least-squares-variable-importance-in-projection)
+4. [부분 최소 제곱-변수 중요도 투영 PLS-VIP](#부분-최소-제곱-변수-중요도-투영-partial-least-squares-variable-importance-in-projection)
 
 
 ## PLS 알고리즘
@@ -50,24 +50,12 @@ $t = Xw$
 </div>
 
 $$
-\documentclass{article}
-\usepackage{amsmath}
-
-\begin{document}
-
-\begin{align*}
-
-Cov(t, Y) &= {Cov(t, Y) \over \sqrt{var(t)}\sqrt{var(Y)}} \sqrt{var(t)}\sqrt{var(Y)} \\
-&= Corr(t, Y)\sqrt{var(t)}\sqrt{var(Y)} \\
-\end{align*}
-
-\end{document}
-
+Cov(t, Y) = {Cov(t, Y) \over \sqrt{var(t)}\sqrt{var(Y)}} \sqrt{var(t)}\sqrt{var(Y)} = Corr(t, Y)\sqrt{var(t)}\sqrt{var(Y)}
 $$
 
 <div style="text-align: left;">
 
-$\therefore Maximize \; Cov(t, Y) \propto Maximize \; Corr(t, Y)var(t)$
+$\therefore Maximize \; Cov(t, Y) \propto Maximize \; Corr(t, Y) \; var(t)$
 </div>
 
 * X : 입력 변수
@@ -75,20 +63,44 @@ $\therefore Maximize \; Cov(t, Y) \propto Maximize \; Corr(t, Y)var(t)$
 * t : X의 선형조합
 * w : 선형조합의 가중치
 
-
 <details>
-<summary>가중치 w</summary>
+<summary>가중치 w를 정하는 방법</summary>
+<div></div>
+<div style="text-align: left;">
+
+$Maximize \; Cov(t, Y) \\
+= Cov(Xw, Y) \\
+= E[(Xw - E[Xw]) \cdot (Y-E[Y])] \\
+= E[(Xw) \cdot (Y)] \\
+= {1 \over n} \sum^n_{i=1}(Xw)_i \cdot Y_i \\
+= {1 \over n} (Xw)^T Y \\
+= {1 \over n} w^T(X^TY) \\
+\\
+\rightarrow w = X^TY \; 일때 \; w와 \; X^TY 같은 \; 방향으로 \; 값 \; 최대화$
+</div>
 </details>
+
+
+## PCA와 비교
+
+* X만 고려하는 PCA와 달리 X와 Y 모두를 동시에 고려하므로 예측력이 높은 성분 추출
+* 클러스터링된 데이터에 효과적
+* 선형/비선형 관계에 대해서는 PCA보다 통찰력 부족
 
 
 ## 부분 최소 제곱-판별 분석 Partial Least Squares-Discriminant Analysis
 
+* 예측 변수 Y가 범주형일 때 사용
+* 범주가 둘인 경우 Y1 = 1, Y2 = -1
+![pls_da1](pls_da1.png)
+
+* 범주가 셋 이상인 경우 One-Hot Encoding
+![pls_da2](pls_da2.png)
 
 
 
 
-
-## 부분 최소 제곱-  Partial Least Squares-Variable Importance in Projection
+## 부분 최소 제곱-변수 중요도 투영 Partial Least Squares-Variable Importance in Projection
 
 
 
@@ -100,3 +112,5 @@ Loong Chuen Lee, Choong-Yeun Liong, Abdul Aziz Jemain, 「Partial least squares-
 Daniel Ruiz-Perez, Haibin Guan, Purnima Madhivanan, Kalai Mathee, Giri Narasimhan,「So you think you can PLS-DA?」
 
 고슴군, 「Dive into Data Science」, https://dive-into-ds.tistory.com/33
+
+Sopora, 「하루일지」, https://blog.naver.com/aromi913/223255936957
