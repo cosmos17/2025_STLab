@@ -84,19 +84,17 @@ $Maximize \; Cov(t, Y) \\
 ## PCA와 비교
 
 * X만 고려하는 PCA와 달리 X와 Y 모두를 동시에 고려하므로 예측력이 높은 성분 추출
-* 클러스터링된 데이터에 효과적
+* PCA보다 클러스터링된 데이터에 효과적
 * 선형/비선형 관계에 대해서는 PCA보다 통찰력 부족
 
 
 ## 부분 최소 제곱-판별 분석 Partial Least Squares-Discriminant Analysis
 
-* 예측 변수 Y가 범주형일 때 사용
-* 범주가 둘인 경우 Y1 = 1, Y2 = -1
-![pls_da1](pls_da1.png)
-
-* 범주가 셋 이상인 경우 One-Hot Encoding
-![pls_da2](pls_da2.png)
-
+* 회귀 기반인 PLS 알고리즘을 확장하여 차원 축소와 분류를 동시에 수행 가능
+* 클래스의 수에 따라 PLS1-DA, PLS2-DA로 분류되나, 두 모델의 분류 성능을 비교한 경험적 연구는 적음. (PLS1, PLS2도 마찬가지)
+    - PLS1-DA 범주가 둘인 경우, Y1 = 1, Y2 = -1
+    - PLS2-DA 범주가 셋 이상인 경우, One-Hot Encoding
+* 과적합(overfitting)되기 쉬우므로 교차 검증(cross-validation)이 중요
 
 
 
