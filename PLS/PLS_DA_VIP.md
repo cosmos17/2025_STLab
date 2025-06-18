@@ -37,7 +37,7 @@
 
 ## PLS 알고리즘
 
-* 다차원 입력 변수 X에서 예측 변수 Y와 가장 큰 공분산을 갖는 k개의 선형 조합(선형 결합)을 생성
+* 다차원 입력 변수(예측 변수) X에서 출력 변수 Y와 가장 큰 공분산을 갖는 k개의 선형 조합(선형 결합)을 생성
 
 * ex) n_components=2  
 x1, x2, x3, x4, x5 에 가중치(0.5, 0.2, 0.1, 0.1, 0.1)를 부여하여 새로운 component1, component2 생성  
@@ -59,7 +59,7 @@ $\therefore Maximize \; Cov(t, Y) \propto Maximize \; Corr(t, Y) \; var(t)$
 </div>
 
 * X : 입력 변수
-* Y : 예측 변수
+* Y : 출력 변수
 * t : X의 선형조합
 * w : 선형조합의 가중치
 
@@ -100,6 +100,8 @@ $Maximize \; Cov(t, Y) \\
 
 ## 부분 최소 제곱-변수 중요도 투영 Partial Least Squares-Variable Importance in Projection
 
+$w_{ak}$ : a번째 주성분에 존재하는 k번째 예측 변수의 가중치
+* VIP는 이 가중치를 고려하여 예측 변수의 중요도를 계산하는 방법
 
 
 
