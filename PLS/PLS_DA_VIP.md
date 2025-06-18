@@ -86,6 +86,8 @@ $Maximize \; Cov(t, Y) \\
     </a>
 </p>
 
+---
+
 ## 2> PCA와 비교
 
 * X만 고려하는 PCA와 달리 X와 Y 모두를 동시에 고려하므로 예측력이 높은 성분 추출
@@ -97,6 +99,8 @@ $Maximize \; Cov(t, Y) \\
         <strong>Top 🔝</strong>
     </a>
 </p>
+
+---
 
 ## 3> 부분 최소 제곱-판별 분석 Partial Least Squares-Discriminant Analysis
 
@@ -112,6 +116,7 @@ $Maximize \; Cov(t, Y) \\
     </a>
 </p>
 
+---
 
 ## 4> 부분 최소 제곱-변수 중요도 투영 Partial Least Squares-Variable Importance in Projection
 
@@ -149,6 +154,8 @@ $$
         <strong>Top 🔝</strong>
     </a>
 </p>
+
+---
 
 ## References
 
