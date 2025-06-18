@@ -5,7 +5,7 @@
     - 계산 복잡도 증가 -> 모델링 비효율성
     - 시각적 표현의 어려움
 
-* **변수 선택과 추출** 두 가지 방법으로, 고차원 데이터에서 중요한 정보는 유지하면서 데이터의 차원을 줄여 단점을 보완할 수 있다.
+* **변수 선택**과 **변수 추출** 두 가지 방법으로, 고차원 데이터에서 중요한 정보는 유지하면서 데이터의 차원을 줄여 단점을 보완할 수 있다.
 
 ||변수 선택 Selection|변수 추출 Extraction|
 |-|-|-|
@@ -26,16 +26,16 @@
 
 ## 목차
 
-1. [PLS 알고리즘](#pls-알고리즘)
+1. [PLS 알고리즘](#1-pls-알고리즘)
 
-2. [PCA와 비교](#pca와-비교)
+2. [PCA와 비교](#2-pca와-비교)
 
-3. [부분 최소 제곱-판별 분석 PLS-DA](#부분-최소-제곱-판별-분석-partial-least-squares-discriminant-analysis)
+3. [부분 최소 제곱-판별 분석 PLS-DA](#3-부분-최소-제곱-판별-분석-partial-least-squares-discriminant-analysis)
 
-4. [부분 최소 제곱-변수 중요도 투영 PLS-VIP](#부분-최소-제곱-변수-중요도-투영-partial-least-squares-variable-importance-in-projection)
+4. [부분 최소 제곱-변수 중요도 투영 PLS-VIP](#4-부분-최소-제곱-변수-중요도-투영-partial-least-squares-variable-importance-in-projection)
 
 
-## PLS 알고리즘
+## 1> PLS 알고리즘
 
 * 다차원 입력 변수(예측 변수) X에서 출력 변수 Y와 가장 큰 공분산을 갖는 k개의 선형 조합(선형 결합)을 생성
 
@@ -80,15 +80,25 @@ $Maximize \; Cov(t, Y) \\
 </div>
 </details>
 
+<p align="right">
+    <a href=#pls-partial-least-squares>
+        <strong>Top 🔝</strong>
+    </a>
+</p>
 
-## PCA와 비교
+## 2> PCA와 비교
 
 * X만 고려하는 PCA와 달리 X와 Y 모두를 동시에 고려하므로 예측력이 높은 성분 추출
 * PCA보다 클러스터링된 데이터에 효과적
 * 선형/비선형 관계에 대해서는 PCA보다 통찰력 부족
 
+<p align="right">
+    <a href=#pls-partial-least-squares>
+        <strong>Top 🔝</strong>
+    </a>
+</p>
 
-## 부분 최소 제곱-판별 분석 Partial Least Squares-Discriminant Analysis
+## 3> 부분 최소 제곱-판별 분석 Partial Least Squares-Discriminant Analysis
 
 * 회귀 기반인 PLS 알고리즘을 확장하여 차원 축소와 분류를 동시에 수행 가능
 * 클래스의 수에 따라 PLS1-DA, PLS2-DA로 분류되나, 두 모델의 분류 성능을 비교한 경험적 연구는 적음. (PLS1, PLS2도 마찬가지)
@@ -96,21 +106,56 @@ $Maximize \; Cov(t, Y) \\
     - PLS2-DA 범주가 셋 이상인 경우, One-Hot Encoding
 * 과적합(overfitting)되기 쉬우므로 교차 검증(cross-validation)이 중요
 
+<p align="right">
+    <a href=#pls-partial-least-squares>
+        <strong>Top 🔝</strong>
+    </a>
+</p>
 
 
-## 부분 최소 제곱-변수 중요도 투영 Partial Least Squares-Variable Importance in Projection
+## 4> 부분 최소 제곱-변수 중요도 투영 Partial Least Squares-Variable Importance in Projection
 
-$w_{ak}$ : a번째 주성분에 존재하는 k번째 예측 변수의 가중치
-* VIP는 이 가중치를 고려하여 예측 변수의 중요도를 계산하는 방법
+$$
+VIP_k = \sqrt{\sum_{a=1}^A w^2_{ak} \; {SSY_a \over SSY_{total}} \cdot {K \over A}}
+$$
 
+* $k$ : $k$번째 예측 변수
+* $K$ : 전체 예측 변수
+* $A$ : PLS의 주성분 수
+* $w_{ak}$ : $a$번째 주성분에 존재하는 $k$번째 예측 변수의 가중치
+* $SSY_a$ : $a$번째 주성분으로 설명되는 변동량
+* $SST_{total}$ : 모든 주성분으로 설명되는 변동량
 
+### 가중합
+
+$$
+\sum_{a=1}^A w^2_{ak} \; {SSY_a \over SSY_{total}}
+$$
+
+* $k$번째 예측 변수의 중요도
+
+### 정규화 normalize
+
+$$
+{K \over A} = {전체\;예측\;변수의\;수 \over 전체\;주성분의\;수}
+$$
+
+* VIP 값의 평균은 전체 평균을 1로 맞추는 이 정규화로 스케일링 되어 있다.
+<br><br>
+* 따라서, $VIP > 1$ 인 변수는 **평균 이상의 설명력을 가진 중요한 변수**로 해석할 수 있다.
+
+<p align="right">
+    <a href=#pls-partial-least-squares>
+        <strong>Top 🔝</strong>
+    </a>
+</p>
 
 ## References
 
-Loong Chuen Lee, Choong-Yeun Liong, Abdul Aziz Jemain, 「Partial least squares-discriminant analysis (PLS-DA) for classification of high-dimensional (HD) data: a review of contemporary practice strategies and knowledge gaps」
+* Loong Chuen Lee, Choong-Yeun Liong, Abdul Aziz Jemain, 「Partial least squares-discriminant analysis (PLS-DA) for classification of high-dimensional (HD) data: a review of contemporary practice strategies and knowledge gaps」
 
-Daniel Ruiz-Perez, Haibin Guan, Purnima Madhivanan, Kalai Mathee, Giri Narasimhan,「So you think you can PLS-DA?」
+* Daniel Ruiz-Perez, Haibin Guan, Purnima Madhivanan, Kalai Mathee, Giri Narasimhan,「So you think you can PLS-DA?」
 
-고슴군, 「Dive into Data Science」, https://dive-into-ds.tistory.com/33
+* 고슴군, 「Dive into Data Science」, https://dive-into-ds.tistory.com/33
 
-Sopora, 「하루일지」, https://blog.naver.com/aromi913/223255936957
+* Sopora, 「하루일지」, https://blog.naver.com/aromi913/223255936957
