@@ -68,14 +68,14 @@ $\therefore Maximize \; Cov(t, Y) \propto Maximize \; Corr(t, Y) \; var(t)$
 <div></div>
 <div style="text-align: left;">
 
-$Maximize \; Cov(t, Y) \\
-= Cov(Xw, Y) \\
-= E[(Xw - E[Xw]) \cdot (Y-E[Y])] \\
-= E[(Xw) \cdot (Y)] \\
-= {1 \over n} \sum^n_{i=1}(Xw)_i \cdot Y_i \\
-= {1 \over n} (Xw)^T Y \\
-= {1 \over n} w^T(X^TY) \\
-\\
+$Maximize \; Cov(t, Y) \\\\
+= Cov(Xw, Y) \\\\
+= E[(Xw - E[Xw]) \cdot (Y-E[Y])] \\\\
+= E[(Xw) \cdot (Y)] \\\\
+= {1 \over n} \sum^n_{i=1}(Xw)_i \cdot Y_i \\\\
+= {1 \over n} (Xw)^T Y \\\\
+= {1 \over n} w^T(X^TY) \\\\
+\\\\
 \rightarrow w = X^TY \; 일때 \; w와 \; X^TY 같은 \; 방향으로 \; 값 \; 최대화$
 </div>
 </details>
@@ -90,8 +90,8 @@ $Maximize \; Cov(t, Y) \\
 
 ## 2> PCA와 비교
 
-* X만 고려하는 PCA와 달리 X와 Y 모두를 동시에 고려하므로 예측력이 높은 성분 추출
-* PCA보다 클러스터링된 데이터에 효과적
+* X만 고려하는 PCA와 달리 **X와 Y 모두를 동시에 고려**하므로 예측력이 높은 성분 추출
+* PCA보다 **클러스터링된 데이터에 효과적**
 * 선형/비선형 관계에 대해서는 PCA보다 통찰력 부족
 
 <p align="right">
